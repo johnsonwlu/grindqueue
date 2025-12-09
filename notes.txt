@@ -1,0 +1,22 @@
+grindqueue - study roadmap tool
+
+core idea:
+- define a plan: ordered list of (url, time, label)
+- tool opens each url for its time slot
+- when time is up, next url opens automatically
+- optional lock mode: can't open other tabs during a session
+- zoom out view: see the whole day's plan at once / track progress
+
+could build as:
+- chrome extension (best option - can control tabs)
+- desktop app with browser automation (too heavy)
+- just a script that opens browser (what i have now, doesn't enforce anything)
+
+chrome extension seems right
+need a backend to store plans? or just chrome.storage?
+if other people use it, backend makes sense
+
+TODO:
+- figure out chrome extension tab APIs
+- data model for plans/sessions
+- simple UI for building a plan
