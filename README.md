@@ -10,38 +10,42 @@ You set up an ordered list of links with time allocations. The tool opens each o
 
 Going with a **chrome extension + fastapi backend**. The extension handles all the tab management (opening URLs, enforcing lock mode, countdown timer). The backend stores plans so they sync across devices and can be shared later.
 
-Decided against a pure local extension because having a backend makes it easier to add multi-device sync and eventually share plans with others.
-
-## planned features
+## features
 
 - define study plans with ordered sessions (url + label + duration)
 - auto-advance to next session when time is up
-- lock mode: enforce focus, no new tabs
-- timeline view: see full day plan and current progress
-- chrome extension so it can actually control the browser
+- lock mode: enforce focus, no new tabs allowed
+- timeline view: see full day plan and track progress
+- chrome extension (manifest v3)
 
 ## stack
 
-- chrome extension (manifest v3) for tab management
-- fastapi backend to store plans
+- chrome extension (manifest v3)
+- fastapi + sqlalchemy (async)
 - postgresql
-- sqlalchemy async
+- python-dotenv for config
 
-## rough data model
+## setup
+
+```bash
+# clone and install deps
+git clone https://github.com/johnsonwlu/grindqueue
+cd grindqueue
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# set up env
+cp .env.example .env
+# edit .env with your database url
+
+# run
+uvicorn app.main:app --reload
+```
+
+## data model
 
 ```
-Plan
-  - name
-  - list of sessions
-
-Session
-  - url
-  - label
-  - duration (minutes)
-  - order
-
-Run (active execution of a plan)
-  - which plan
-  - current session index
-  - started at
+Plan        name, description
+Session     url, label, duration_minutes, order
+Run         plan_id, current_session_index, status, lock_mode
 ```
