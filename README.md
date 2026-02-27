@@ -2,13 +2,13 @@
 
 A study roadmap tool. Build a plan of what to study, assign time blocks to each resource, and the tool walks you through them one by one.
 
-## idea
+## what it does
 
-You set up an ordered list of links with time allocations. The tool opens each one for its allotted time, then automatically moves to the next. Optional lock mode prevents you from opening other tabs during a session.
+You set up an ordered list of links with time allocations. The tool opens each one for its allotted time, then automatically moves to the next. Optional lock mode prevents you from opening other tabs during a session. A timeline view lets you see your full day plan and where you are in it.
 
-## approach
+## status
 
-Going with a **chrome extension + fastapi backend**. The extension handles all the tab management (opening URLs, enforcing lock mode, countdown timer). The backend stores plans so they sync across devices and can be shared later.
+Working on the fastapi backend (plans, sessions, runs). Chrome extension next.
 
 ## features
 
@@ -28,17 +28,14 @@ Going with a **chrome extension + fastapi backend**. The extension handles all t
 ## setup
 
 ```bash
-# clone and install deps
 git clone https://github.com/johnsonwlu/grindqueue
 cd grindqueue
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# set up env
 cp .env.example .env
-# edit .env with your database url
+# edit .env — set DATABASE_URL and SECRET_KEY
 
-# run
 uvicorn app.main:app --reload
 ```
 
