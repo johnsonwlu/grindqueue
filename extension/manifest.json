@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "GrindQueue",
+  "version": "1.0.0",
+  "description": "Scheduled, enforced browsing roadmap for focused study sessions.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "alarms",
+    "webNavigation"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "GrindQueue"
+  },
+  "options_page": "dashboard/dashboard.html"
+}
